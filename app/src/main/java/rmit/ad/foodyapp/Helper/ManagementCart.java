@@ -10,11 +10,11 @@ import rmit.ad.foodyapp.Interface.ChangeNumberItemsListener;
 
 public class ManagementCart {
     private Context context;
-    private TinyDB tinyDB;
+    private FakeDB tinyDB;
 
     public ManagementCart(Context context){
         this.context = context;
-        this.tinyDB = new TinyDB(context);
+        this.tinyDB = new FakeDB(context);
     }
 
     public void insertFood (FoodDomain item) {
@@ -56,6 +56,14 @@ public class ManagementCart {
         }
         tinyDB.putListObject("CartList", listFood);
         changeNumberItemsListener.changed();
+    }
+
+    public void checkout(ArrayList<FoodDomain> listFood){
+        if(listFood.size() > 0){
+            listFood.removeAll(listFood);
+        }
+
+        tinyDB.putListObject("CartList", listFood);
     }
 
     public Double getTotalFee(){

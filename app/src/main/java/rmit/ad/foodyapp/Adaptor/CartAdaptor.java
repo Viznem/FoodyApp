@@ -56,26 +56,34 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
         holder.plusItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                managementCart.plusFoodNum(foodDomains, position, new ChangeNumberItemsListener() {
-                    @Override
-                    public void changed() {
-                        notifyDataSetChanged();
-                        changeNumberItemsListener.changed();
-                    }
-                });
+                try{
+                    managementCart.plusFoodNum(foodDomains, position, new ChangeNumberItemsListener() {
+                        @Override
+                        public void changed() {
+                            notifyDataSetChanged();
+                            changeNumberItemsListener.changed();
+                        }
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
         holder.minusItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                managementCart.minusFoodNum(foodDomains, position, new ChangeNumberItemsListener() {
-                    @Override
-                    public void changed() {
-                        notifyDataSetChanged();
-                        changeNumberItemsListener.changed();
-                    }
-                });
+                try{
+                    managementCart.minusFoodNum(foodDomains, position, new ChangeNumberItemsListener() {
+                        @Override
+                        public void changed() {
+                            notifyDataSetChanged();
+                            changeNumberItemsListener.changed();
+                        }
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -89,6 +97,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
         TextView title, feeEachItem;
         ImageView pic, plusItem, minusItem;
         TextView totalEachItem, num;
+        TextView checkoutBtn;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.titleCart);
@@ -98,8 +107,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
             plusItem=itemView.findViewById(R.id.cartPlusBtn);
             minusItem=itemView.findViewById(R.id.cartMinusBtn);
             num=itemView.findViewById(R.id.numberItem);
+            checkoutBtn=itemView.findViewById(R.id.checkoutBtn);
         }
     }
-
-
 }

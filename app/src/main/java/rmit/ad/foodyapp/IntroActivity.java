@@ -22,7 +22,11 @@ public class IntroActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public  void onClick(View view){
-                startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                try {
+                    startActivity(new Intent(IntroActivity.this, MainActivity.class));
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

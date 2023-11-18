@@ -35,6 +35,21 @@ public class CartActivity extends AppCompatActivity {
         initListCart();
         CalculateCart();
         bottomNavigation();
+        checkoutCart();
+    }
+
+    private void checkoutCart(){
+        TextView checkoutBtn = findViewById(R.id.checkoutBtn);
+        checkoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    startActivity(new Intent(CartActivity.this, MainActivity.class));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void bottomNavigation(){
@@ -44,14 +59,22 @@ public class CartActivity extends AppCompatActivity {
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CartActivity.this, CartActivity.class));
+                try{
+                    startActivity(new Intent(CartActivity.this, CartActivity.class));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CartActivity.this, MainActivity.class));
+                try{
+                    startActivity(new Intent(CartActivity.this, MainActivity.class));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }

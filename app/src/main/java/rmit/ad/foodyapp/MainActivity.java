@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import rmit.ad.foodyapp.Adaptor.CategoryAdaptor;
@@ -38,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
         ArrayList<CategoryDomain> category = new ArrayList<>();
-        category.add(new CategoryDomain("Donut", "cat_5"));
-        category.add(new CategoryDomain("Burger", "cat_2"));
-        category.add(new CategoryDomain("Pizza", "cat_1"));
-        category.add(new CategoryDomain("Hotdog", "cat_3"));
-        category.add(new CategoryDomain("Drink", "cat_4"));
+        category.add(new CategoryDomain("Vietnam", "vnfood_icon"));
+        category.add(new CategoryDomain("USA", "koreafood_icon"));
+        category.add(new CategoryDomain("Korea", "thaifood_icon"));
+        category.add(new CategoryDomain("Thai", "usafood"));
+        category.add(new CategoryDomain("Dessert", "cat_4"));
 
         adapter= new CategoryAdaptor(category);
         recyclerViewCategoryList.setAdapter(adapter);
@@ -69,14 +70,23 @@ public class MainActivity extends AppCompatActivity {
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CartActivity.class));
+                try{
+                    startActivity(new Intent(MainActivity.this, CartActivity.class));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         });
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                try{
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }

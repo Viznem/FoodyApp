@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import rmit.ad.foodyapp.Domain.FoodDomain;
 import rmit.ad.foodyapp.Helper.ManagementCart;
@@ -23,6 +24,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     private ImageView plusBtn, minusBtn, picFood;
     private CheckBox checkBox1, checkBox2, checkBox3, checkBox4;
     private FoodDomain object;
+    private ArrayList<String> toppings;
     int numberOrder = 1;
     private ManagementCart managementCart;
     @Override
@@ -31,6 +33,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_food_detail);
 
         managementCart = new ManagementCart(this);
+        toppings = new ArrayList<String>();
 
         initView();
         getBundle();
@@ -70,23 +73,33 @@ public class FoodDetailActivity extends AppCompatActivity {
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String noteExtra = "";
+                for (String topping: toppings){
+                    noteExtra += "" + topping +", ";
+                }
                 object.setNumberInCart(numberOrder);
-
+                object.setOrderNote(noteExtra);
                 try{
                     managementCart.insertFood(object);
-                    startActivity(new Intent(FoodDetailActivity.this, CartActivity.class));
+                    Intent intent = new Intent(FoodDetailActivity.this, CartActivity.class);
+                   //intent.putExtra("toppings", toppings);
+                    startActivity(intent);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+
+                toppings.clear();
             }
         });
     }
 
     public void onCheckboxClicked(View view){
         CheckBox checkBox = (CheckBox)view;
-
+        String topping = checkBox.getText().toString();
         if(checkBox.isChecked()){
-            Toast.makeText(this, "You've selected: "+checkBox.getText().toString(), Toast.LENGTH_SHORT).show();
+            toppings.add(topping);
+        }else {
+            toppings.remove(topping);
         }
     }
 

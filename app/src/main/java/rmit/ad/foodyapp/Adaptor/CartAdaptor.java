@@ -45,6 +45,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
         holder.totalEachItem.setText(String.valueOf(Math.round((
                 foodDomains.get(position).getNumberInCart() * foodDomains.get(position).getFee()) * 100) / 100));
         holder.num.setText(String.valueOf(foodDomains.get(position).getNumberInCart()));
+        holder.notes.setText(foodDomains.get(position).getOrderNote());
 
         int drawableResourceId = holder.itemView.getContext().getResources().getIdentifier(
                 foodDomains.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
@@ -94,7 +95,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title, feeEachItem;
+        TextView title, feeEachItem, notes;
         ImageView pic, plusItem, minusItem;
         TextView totalEachItem, num;
         TextView checkoutBtn;
@@ -108,6 +109,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
             minusItem=itemView.findViewById(R.id.cartMinusBtn);
             num=itemView.findViewById(R.id.numberItem);
             checkoutBtn=itemView.findViewById(R.id.checkoutBtn);
+            notes=itemView.findViewById(R.id.notes);
         }
     }
 }

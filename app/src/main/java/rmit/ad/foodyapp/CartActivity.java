@@ -13,6 +13,9 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import rmit.ad.foodyapp.Adaptor.CartAdaptor;
 import rmit.ad.foodyapp.Helper.ManagementCart;
 import rmit.ad.foodyapp.Interface.ChangeNumberItemsListener;
@@ -44,7 +47,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    startActivity(new Intent(CartActivity.this, MainActivity.class));
+                    Intent intent = new Intent(CartActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }catch (Exception e){
                     e.printStackTrace();
                 }

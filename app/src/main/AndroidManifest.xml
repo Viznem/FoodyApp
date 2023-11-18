@@ -12,11 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodyApp"
         tools:targetApi="31">
-        <!--below is the code for default activity which is Main Activity-->
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" /> <!-- below is the code for default activity which is Main Activity -->
+        <activity
+            android:name=".IntroActivity"
+            android:exported="true">
 
-            <!--Inside this activity you should be having below code for
-                intent filter which will check the default activity-->
+            <!--
+                Inside this activity you should be having below code for
+                intent filter which will check the default activity
+            -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
